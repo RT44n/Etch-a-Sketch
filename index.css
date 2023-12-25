@@ -1,0 +1,14 @@
+.body {
+    display: flex;
+    height: 100vh;
+}
+
+.grid{
+    display: flex;
+    padding: 16px;
+}
+
+.gridContainer{
+    display: flex;
+    
+}
