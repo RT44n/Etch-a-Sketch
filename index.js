@@ -1,7 +1,7 @@
 const container = document.querySelector(".container");
 let userInput = 16;
 
-// Creates userInput of divs that stack over eachother
+// Creates userInput no of divs that stack over eachother
 for (j = 0; j < userInput; j++) {
   const gridContainer = document.createElement("div");
   gridContainer.classList.toggle("gridContainer");
@@ -13,5 +13,10 @@ for (j = 0; j < userInput; j++) {
     grid.style.border = "1px solid red";
     grid.classList.toggle("grid");
     gridContainer.append(grid);
+
+    // Changes grid box color when a cursor is hovered.
+    grid.addEventListener("mouseleave", (e) => {
+      grid.style.backgroundColor = "black";
+    });
   }
 }
