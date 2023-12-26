@@ -1,22 +1,29 @@
 const container = document.querySelector(".container");
-let userInput = 16;
+const promptButton = document.querySelector("#prompt");
+userInput = 10;
 
-// Creates userInput no of divs that stack over eachother
-for (j = 0; j < userInput; j++) {
-  const gridContainer = document.createElement("div");
-  gridContainer.classList.toggle("gridContainer");
-  container.append(gridContainer);
+window.addEventListener("beforeunload", (event) => {
+  let userprompt = prompt("ARE YOU SURE?");
+});
+let promptUser = () => {
+  let userInput = prompt("What's your input? ");
+  if (userInput < 1 || userInput > 100) {
+    alert("ERROR! Please enter a value between 1 and 100");
+  } else {
+    for (i = 0; i < userInput * userInput; i++) {
+      const grid = document.createElement("div");
+      grid.style.width = 300 / userInput + "px";
+      grid.style.height = 300 / userInput + "px";
+      grid.classList.toggle("grid");
+      container.append(grid);
 
-  // Creates userInput no of divs that fill in gridcontainer to create gridboxes
-  for (i = 0; i < userInput; i++) {
-    const grid = document.createElement("div");
-    grid.style.border = "1px solid red";
-    grid.classList.toggle("grid");
-    gridContainer.append(grid);
-
-    // Changes grid box color when a cursor is hovered.
-    grid.addEventListener("mouseleave", (e) => {
-      grid.style.backgroundColor = "black";
-    });
+      // Changes grid box color when a cursor is hovered.
+      grid.addEventListener("mouseleave", (e) => {
+        grid.style.backgroundColor = "black";
+      });
+    }
   }
-}
+};
+promptButton.addEventListener("click", (e) => {
+  promptUser();
+});
