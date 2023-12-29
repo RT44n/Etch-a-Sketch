@@ -1,15 +1,14 @@
 const container = document.querySelector(".container");
 const promptButton = document.querySelector("#prompt");
-userInput = 10;
+const reset = document.querySelector("#reset");
 
-window.addEventListener("beforeunload", (event) => {
-  let userprompt = prompt("ARE YOU SURE?");
-});
 let promptUser = () => {
+  //Prompts the user for grid size.
   let userInput = prompt("What's your input? ");
   if (userInput < 1 || userInput > 100) {
     alert("ERROR! Please enter a value between 1 and 100");
   } else {
+    //Creates a x*x grid and ajusts height and width accordingly.
     for (i = 0; i < userInput * userInput; i++) {
       const grid = document.createElement("div");
       grid.style.width = 300 / userInput + "px";
@@ -20,10 +19,19 @@ let promptUser = () => {
       // Changes grid box color when a cursor is hovered.
       grid.addEventListener("mouseleave", (e) => {
         grid.style.backgroundColor = "black";
+
+        //Clears the grid after use.
+        reset.addEventListener("click", (e) => {
+          for (x = 0; x < userInput * userInput; x++) {
+            container.removeChild(grid);
+          }
+        });
       });
     }
   }
 };
+
+//Button to prompt user
 promptButton.addEventListener("click", (e) => {
   promptUser();
 });
